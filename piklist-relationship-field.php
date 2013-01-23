@@ -43,11 +43,9 @@ define( 'PIKLISTRELATIONSHIPFIELD_DIR_NAME', basename( PIKLISTRELATIONSHIPFIELD_
 define( 'PIKLISTRELATIONSHIPFIELD_URL', plugins_url( PIKLISTRELATIONSHIPFIELD_DIR_NAME ) );
 
 
-add_filter( 'http_request_args', array( 'PiklistSwitchField', 'disable_auto_update' ) );
-
-add_action( 'admin_init', array( 'PiklistSwitchField', 'check_dependencies' ) );
-
-add_action( 'admin_enqueue_scripts', array( 'PiklistSwitchField', 'enqueue_styles_and_scripts' ) );
+add_filter( 'http_request_args', array( 'PiklistRelationshipField', 'disable_auto_update' ) );
+add_action( 'admin_init', array( 'PiklistRelationshipField', 'check_dependencies' ) );
+add_action( 'admin_enqueue_scripts', array( 'PiklistRelationshipField', 'enqueue_styles_and_scripts' ) );
 
 
 class PiklistRelationshipField {
@@ -56,6 +54,7 @@ class PiklistRelationshipField {
 	 * Code to exclude this plugin from auto update checks
 	 * Taken from http://markjaquith.wordpress.com/2009/12/14/excluding-your-plugin-or-theme-from-update-checks/
 	 */
+	
 	function disable_auto_update ( $r, $url = null ) {
 		if ( 0 !== strpos( $url, 'http://api.wordpress.org/plugins/update-check' ) )
 			return $r; // Not a plugin update request. Bail immediately.
@@ -77,15 +76,6 @@ class PiklistRelationshipField {
 
 	public function enqueue_styles_and_scripts () {
 		
-		/*  
-		wp_enqueue_script (
-			'piklist-switch-field',
-			trailingslashit( PIKLISTRELATIONSHIPFIELD_URL ) . 'js/{{JS HERE}}',
-			array( 'jquery', 'piklist' ),
-			'',
-			true
-		);
-		*/
 		
 	}
 
